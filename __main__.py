@@ -3,7 +3,10 @@ from ExpressionInterpreter.interpreter.parser import Parser
 from ExpressionInterpreter.interpreter.interpreter import Interpreter
 from ExpressionInterpreter.interpreter.trie import Trie
 
+
+
 def main():
+    root = Trie("ROOT", "ROOT")
     while True:
         try:
             text = input('milemath>>>> ')
@@ -11,9 +14,6 @@ def main():
             break
         if not text:
             continue
-
-        root = Trie("ROOT", "ROOT")
-        root.addWord("mile", 5)
         lexer = Lexer(text)
         parser = Parser(lexer)
         interpreter = Interpreter(parser, root)
