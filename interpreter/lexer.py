@@ -130,7 +130,6 @@ class Lexer(object):
             if self.current_char.isalpha():
                 word = self.word()
                 if (self.isOperation(word)):
-                    print("Ulazim u isoperation if")
                     return Token(self.getOperation(word), 0)
 
                 return Token(VARIABLE, word)

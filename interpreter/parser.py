@@ -112,21 +112,21 @@ class Parser(object):
             node = MathOP(op=token, right=self.factor())
 
 
-        if (token.type == MORE):
-            self.eat(MORE)
-            node = LogOP(left=node, op=token, right=self.factor())
-        elif (token.type == MOREEQL):
-            self.eat(MOREEQL)
-            node = LogOP(left=node, op=token, right=self.factor())
-        elif (token.type == LESS):
-            self.eat(LESS)
-            node = LogOP(left=node, op=token, right=self.factor())
-        elif (token.type == LESSEQL):
-            self.eat(LESSEQL)
-            node = LogOP(left=node, op=token, right=self.factor())
-        elif (token.type == EQUALS):
-            self.eat(EQUALS)
-            node = LogOP(left=node, op=token, right=self.factor())
+        # if (token.type == MORE):
+        #     self.eat(MORE)
+        #     node = LogOP(left=node, op=token, right=self.factor())
+        # elif (token.type == MOREEQL):
+        #     self.eat(MOREEQL)
+        #     node = LogOP(left=node, op=token, right=self.factor())
+        # elif (token.type == LESS):
+        #     self.eat(LESS)
+        #     node = LogOP(left=node, op=token, right=self.factor())
+        # elif (token.type == LESSEQL):
+        #     self.eat(LESSEQL)
+        #     node = LogOP(left=node, op=token, right=self.factor())
+        # elif (token.type == EQUALS):
+        #     self.eat(EQUALS)
+        #     node = LogOP(left=node, op=token, right=self.factor())
 
         elif (token.type == ASSIGN):
             self.eat(ASSIGN)
@@ -170,8 +170,29 @@ class Parser(object):
 
         return node
 
-    def parse(self):
+    def logicOperation(self):
         node = self.expr()
+        token = self.current_token
+        if (token.type == MORE):
+            self.eat(MORE)
+            node = LogOP(left=node, op=token, right=self.expr())
+        elif (token.type == MOREEQL):
+            self.eat(MOREEQL)
+            node = LogOP(left=node, op=token, right=self.expr())
+        elif (token.type == LESS):
+            self.eat(LESS)
+            node = LogOP(left=node, op=token, right=self.expr())
+        elif (token.type == LESSEQL):
+            self.eat(LESSEQL)
+            node = LogOP(left=node, op=token, right=self.expr())
+        elif (token.type == EQUALS):
+            self.eat(EQUALS)
+            node = LogOP(left=node, op=token, right=self.expr())
+
+        return node
+
+    def parse(self):
+        node = self.logicOperation()
         if self.current_token.type != EOF:
             self.error()
         return node

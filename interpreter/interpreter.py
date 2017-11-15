@@ -22,35 +22,33 @@ class Interpreter(NodeVisitor):
     def __init__(self, parser, root):
         self.root = root
         self.parser = parser
-        print(self)
 
     def visit_LogOP(self, node):
         if node.op.type == MORE:
             if self.visit(node.left) > self.visit(node.right):
-                return 1
+                return True
             else:
-                return 0
+                return False
         elif node.op.type == MOREEQL:
             if self.visit(node.left) >= self.visit(node.right):
-                return 1
+                return True
             else:
-                return 0
+                return False
         elif node.op.type == LESS:
             if self.visit(node.left) < self.visit(node.right):
-                return 1
+                return True
             else:
-                return 0
+                return False
         elif node.op.type == LESSEQL:
             if self.visit(node.left) <= self.visit(node.right):
-                return 1
+                return True
             else:
-                return 0
+                return False
         elif node.op.type == EQUALS:
             if self.visit(node.left) == self.visit(node.right):
-                return 1
+                return True
             else:
-                return 0
-
+                return False
     def visit_VarOP(self, node):
         if node.assign:
             self.root.addWord(node.var, self.visit(node.right))
