@@ -68,7 +68,7 @@ class Parser(object):
             return Num(token)
         elif token.type == LPAREN:
             self.eat(LPAREN)
-            node = self.expr()
+            node = self.logicOperation()
             self.eat(RPAREN)
             return node
         elif token.type == VARIABLE:
@@ -78,7 +78,7 @@ class Parser(object):
             if (token.type == ASSIGN):
                 self.eat(ASSIGN)
                 print(token)
-                return VarOP(var=var, assign=True, right=self.expr())
+                return VarOP(var=var, assign=True, right=self.logicOperation())
             else:
                 return VarOP(var=var, assign=False, right=0)
 

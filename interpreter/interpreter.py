@@ -54,7 +54,6 @@ class Interpreter(NodeVisitor):
             self.root.addWord(node.var, self.visit(node.right))
             return 0
         else:
-            self.root.printTrie()
             return self.root.getWord(node.var)
 
     def visit_MathOP(self, node):

@@ -31,10 +31,6 @@ class Trie(object):
             # Vraca vrednost neke reci
 
     def getWord(self, word):
-        print("Sad sam u:" + self.letter)
-        print("Word je: " + word)
-        print("------------------")
-
         if (not self.hasChild(word[0:1])):
             print("Nemam to dete, ne postoji ta rec")
             return
