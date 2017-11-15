@@ -2,6 +2,8 @@ from .lexer import INTEGER, PLUS, MINUS, MUL, DIV, LPAREN, RPAREN, EOF, LOG, POW
     MORE, LESS, EQUALS, MOREEQL, LESSEQL, ASSIGN,VARIABLE
 import math
 
+NUMBER = 1.123456654321121212121234532658902798732419872340981264591609487320986039248712309510293861
+
 ###############################################################################
 #                                                                             #
 #  INTERPRETER                                                                #
@@ -52,7 +54,7 @@ class Interpreter(NodeVisitor):
     def visit_VarOP(self, node):
         if node.assign:
             self.root.addWord(node.var, self.visit(node.right))
-            return 0
+            return NUMBER
         else:
             return self.root.getWord(node.var)
 

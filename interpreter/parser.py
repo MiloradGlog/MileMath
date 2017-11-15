@@ -77,7 +77,6 @@ class Parser(object):
             token = self.current_token
             if (token.type == ASSIGN):
                 self.eat(ASSIGN)
-                print(token)
                 return VarOP(var=var, assign=True, right=self.logicOperation())
             else:
                 return VarOP(var=var, assign=False, right=0)

@@ -1,6 +1,7 @@
 from interpreter.lexer import Lexer
 from interpreter.parser import Parser
 from interpreter.interpreter import Interpreter
+from interpreter.interpreter import NUMBER
 from interpreter.trie import Trie
 
 
@@ -19,9 +20,11 @@ def main():
         interpreter = Interpreter(parser, root)
         result = interpreter.interpret()
 
+
         if result in (True, False):
             print (result)
-
+        elif result == NUMBER:
+            pass
         elif float(result).is_integer():
             print("%.0f" % result)
         else:

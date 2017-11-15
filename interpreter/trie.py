@@ -24,7 +24,7 @@ class Trie(object):
 
         if (len(word) == 1):
             if word in self.children:
-                print("ne mozes da dodas, vec postoji")
+                self.children[word].value = value
                 return
             self.children[word] = Trie(value, word)
 
