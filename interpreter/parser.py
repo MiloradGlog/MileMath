@@ -25,8 +25,8 @@ class LogOP(AST):
         self.right = right
 
 class VarOP(AST):
-    def __init__(self, left, assign, right):
-        self.left = left
+    def __init__(self, var, assign, right):
+        self.var = var
         self.assign = assign
         self.right = right
 
@@ -72,13 +72,15 @@ class Parser(object):
             self.eat(RPAREN)
             return node
         elif token.type == VARIABLE:
-            left = token.value
+            var = token.value
             self.eat(VARIABLE)
+            token = self.current_token
             if (token.type == ASSIGN):
                 self.eat(ASSIGN)
-                node = VarOP(left=left, assign=True, right=self.expr())
+                print(token)
+                return VarOP(var=var, assign=True, right=self.expr())
             else:
-                node = VarOP(left=left, assign=False, right=0)
+                return VarOP(var=var, assign=False, right=0)
 
     def operation(self):
         node = self.factor()

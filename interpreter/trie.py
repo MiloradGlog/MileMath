@@ -30,7 +30,7 @@ class Trie(object):
 
             # Vraca vrednost neke reci
 
-    def getValueOfWord(self, word):
+    def getWord(self, word):
         print("Sad sam u:" + self.letter)
         print("Word je: " + word)
         print("------------------")
@@ -48,7 +48,7 @@ class Trie(object):
                 print("Ta rec ne postoji")
                 return
 
-        return child.getValueOfWord(word[1:])
+        return child.getWord(word[1:])
 
     # Vraca true ili false ako trenutni node ima, ili nema odredjeno dete(slovo)
     def hasChild(self, letter):

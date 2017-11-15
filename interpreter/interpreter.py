@@ -22,6 +22,7 @@ class Interpreter(NodeVisitor):
     def __init__(self, parser, root):
         self.root = root
         self.parser = parser
+        print(self)
 
     def visit_LogOP(self, node):
         if node.op.type == MORE:
@@ -51,11 +52,12 @@ class Interpreter(NodeVisitor):
                 return 0
 
     def visit_VarOP(self, node):
-        if node.op.type == ASSIGN:
-            self.root.addWord(node.left, node.right)
+        if node.assign:
+            self.root.addWord(node.var, self.visit(node.right))
             return 0
         else:
-            return self.root.getValueOfWord(node.left)
+            self.root.printTrie()
+            return self.root.getWord(node.var)
 
     def visit_MathOP(self, node):
         if node.op.type == LOG:

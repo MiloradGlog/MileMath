@@ -13,6 +13,7 @@ def main():
             continue
 
         root = Trie("ROOT", "ROOT")
+        root.addWord("mile", 5)
         lexer = Lexer(text)
         parser = Parser(lexer)
         interpreter = Interpreter(parser, root)
@@ -23,3 +24,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+#NIJE ISTI ROOT U DVE INSTANCE INTERPRETERA
