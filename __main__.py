@@ -1,7 +1,7 @@
-from ExpressionInterpreter.interpreter.lexer import Lexer
-from ExpressionInterpreter.interpreter.parser import Parser
-from ExpressionInterpreter.interpreter.interpreter import Interpreter
-from ExpressionInterpreter.interpreter.trie import Trie
+from interpreter.lexer import Lexer
+from interpreter.parser import Parser
+from interpreter.interpreter import Interpreter
+from interpreter.trie import Trie
 
 
 
